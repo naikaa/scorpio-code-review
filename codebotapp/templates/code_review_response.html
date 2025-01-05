@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    <style>
+        table {
+            width: 90%;
+            margin: 10px auto;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 5px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <h1>Scorpio LLM PR Comments</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Key</th>
+                <th>Value</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for key, value in my_dict.items %}
+            <tr>
+                <td>{{ key }}</td>
+                <td id="output">{{ value }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+<script>
+     // Find the td by id
+    var tdElement = document.getElementById('output');
+
+    // Get the text and split by '*'
+    
+    var formattedValue = tdElement.innerText.split('* **').join('<br>');
+    
+
+
+    // Update the td content, inserting line breaks
+    tdElement.innerHTML = formattedValue;
+</script>
+
+{% endblock %}
+

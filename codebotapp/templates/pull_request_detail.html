@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <title>Pull Request Details</title>
+</head>
+<body>
+    {% if error %}
+        <p>{{ error }}</p>
+    {% else %}
+        <h1>{{ title }}</h1>
+        <p><strong>Created by:</strong> {{ user }}</p>
+        <p><strong>Created at:</strong> {{ created_at }}</p>
+        <p><strong>Status:</strong> {{ state }}</p>
+        <p><strong>Description:</strong></p>
+        <p>{{ body }}</p>
+        <a href="{{ html_url }}" target="_blank">View on GitHub</a>
+
+        <h2>Files Changed:</h2>
+        <ul>
+            {% for file in files_changed %}
+                <li>
+                    <strong>Filename:</strong> {{ file.filename }} <br>
+                    <strong>Status:</strong> {{ file.status }} <br>
+                    <strong>Changes:</strong>
+                    <pre>{{ file.patch }}</pre>  <!-- Display the diff -->
+                </li>
+            {% endfor %}
+        </ul>
+
+         <!-- Button to call llm_review -->
+        <form action="{% url 'llm_review'%}" method="post">
+            {% csrf_token %}
+            <input type="hidden" name="pull_request_id" value="{{ pull_request_id }}">
+            <button type="submit">LLM Review</button>
+        </form>
+    {% endif %}
+{% endblock %}

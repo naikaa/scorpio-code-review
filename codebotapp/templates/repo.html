@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>GitHub Pull Requests</h1>
+    {% if pulls %}
+        <ul>
+            {% for pr in pulls %}
+                 <li>
+                    <a href="{{ pr.html_url }}" target="_blank">{{ pr.title }}</a>
+                    by {{ pr.user.login }}
+                    <a href="{% url 'view_pull_request' pr.number %}">
+                        <button type="button">Review</button>
+                    </a>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No pull requests found.</p>
+    {% endif %}
+{% endblock %}
