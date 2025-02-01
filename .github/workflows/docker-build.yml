@@ -38,7 +38,7 @@ jobs:
     #       my-django-app:latest
 
     # # Step 5: (Optional) Push Docker image to DockerHub
-    # - name: Push Docker Image
-    #   run: |
-    #     docker tag my-django-app:latest my-dockerhub-user/my-django-app:latest
-    #     docker push my-dockerhub-user/my-django-app:latest
+    - name: Push Docker Image
+      run: |
+        docker tag scorpio:latest naikaa/scorpio_docker_repo:latest
+        docker push naikaa/scorpio_docker_repo:latest
