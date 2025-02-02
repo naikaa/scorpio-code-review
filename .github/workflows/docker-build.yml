@@ -36,5 +36,5 @@ jobs:
         gcloud container clusters get-credentials ${{ secrets.GKE_CLUSTER }} --zone ${{ secrets.GKE_ZONE }} --project ${{ secrets.GKE_PROJECT }}
     - name: Deploy to GKE
       run: |
-        kubectl apply -f /home/runner/work/scorpio-code-review/scorpio-code-review/k8/deployment.yaml
-        kubectl apply -f /home/runner/work/scorpio-code-review/scorpio-code-review/k8/service.yaml
+        kubectl apply -f k8/deployment.yml
+        kubectl apply -f k8/service.yml
