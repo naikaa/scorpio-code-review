@@ -6,12 +6,14 @@ on:
       - naikaa-patch-1
 
 jobs:
-  build:
+  deploy:
     runs-on: ubuntu-latest
 
     steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
 
-   - name: Authenticate to Google Cloud
+    - name: Authenticate to Google Cloud
       uses: google-github-actions/auth@v1
       with:
         credentials_json: ${{ secrets.GCP_SA_KEY }}
@@ -22,7 +24,6 @@ jobs:
         project_id: ${{ secrets.GKE_PROJECT }}
         install_components: kubectl  # Install kubectl for GKE management
 
-    
     - name: Get GKE credentials
       run: |
         gcloud container clusters get-credentials ${{ secrets.GKE_CLUSTER }} --zone ${{ secrets.GKE_ZONE }} --project ${{ secrets.GKE_PROJECT }}
@@ -31,4 +32,3 @@ jobs:
       run: |
         kubectl apply -f k8s/deployment.yaml
         kubectl apply -f k8s/service.yaml
-
