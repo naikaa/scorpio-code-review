@@ -12,7 +12,7 @@ jobs:
     steps:
     - name: where am i
       run: |
-        ls
+        ls -l
     # Step 1: Check out code
     - name: Checkout code
       uses: actions/checkout@v3
