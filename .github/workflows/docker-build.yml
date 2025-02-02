@@ -10,14 +10,15 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    
+    # Step 1: Check out code
+    - name: Checkout code
+      uses: actions/checkout@v3
+      
     - name: where am i
       run: |
         pwd
         ls -la
-    # Step 1: Check out code
-    - name: Checkout code
-      uses: actions/checkout@v3
-
     # Step 5: Deploy to GKE
     - name: Authenticate to Google Cloud
       uses: google-github-actions/auth@v1
