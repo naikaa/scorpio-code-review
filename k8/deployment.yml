@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: scorpio
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: scorpio
+  template:
+    metadata:
+      labels:
+        app: scorpio
+    spec:
+      containers:
+      - name: scorpio
+        image: naikaa/scorpio_docker_repo:latest
+        ports:
+        - containerPort: 8000
