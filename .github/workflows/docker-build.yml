@@ -32,8 +32,6 @@ jobs:
         docker tag scorpio:latest naikaa/scorpio_docker_repo:latest
         docker push naikaa/scorpio_docker_repo:latest
 
-
-
     # Step 5: Deploy to GKE
     - name: Authenticate to Google Cloud
       uses: google-github-actions/auth@v1
