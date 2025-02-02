@@ -6,6 +6,7 @@ from django.conf import settings
 import os, requests
 import google.generativeai as genai
 from github.GithubException import GithubException
+from django.contrib import messages
 
 
 
@@ -30,18 +31,20 @@ def viewrepo(request):
     g = cache.get('gh_token')
 
     if not code_repo or not g:
-        print("Repository or GitHub token not found in cache.")
-        return redirect('index')
+    	messages.error(request, "GitHub repository or token not found. Please try again.")
+    	print("Repository or GitHub token not found in cache.")
+    	return redirect('index')
 
     try:
         repo = g.get_repo(code_repo)
         pulls = repo.get_pulls()
     except GithubException as e:
-        print(f"GitHub API error while accessing repository: {e.data.get('message', 'Unknown error')}")
-        return redirect('index')
+    	messages.error(request, "GitHub repository or token not found. Please try again.")
+    	print(f"GitHub API error while accessing repository: {e.data.get('message', 'Unknown error')}")
+    	return redirect('index')
     except Exception as e:
-        print(f"Unexpected error: {str(e)}")
-        return redirect('index')
+    	print(f"Unexpected error: {str(e)}")
+    	return redirect('index')
 
     return render(request, 'repo.html', {'pulls': pulls})
 

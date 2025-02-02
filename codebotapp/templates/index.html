@@ -1,10 +1,21 @@
 {% extends "base.html" %}
 
 {% block content %}
+
+
 <form method="POST">
     {% csrf_token %}
-    <label for="input_string">Enter GitHub URL: https://github.com/</label>
+    <p><strong>Enter GitHub URL:</strong>
+    <label for="input_string">https://github.com/</label>
     <input type="text" id="input_string" name="input_string">
-    <button type="submit">Submit</button>
+    <button type="submit">Submit</button></p>
+
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-danger">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endif %}
 </form>
 {% endblock %}
