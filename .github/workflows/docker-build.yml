@@ -3,7 +3,7 @@ name: Build and Deploy Django Docker Container
 on:
   push:
     branches:
-      - main
+      - naikaa-patch-1
 
 jobs:
   build:
