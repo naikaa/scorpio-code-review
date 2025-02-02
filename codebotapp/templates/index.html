@@ -3,7 +3,7 @@
 {% block content %}
 <form method="POST">
     {% csrf_token %}
-    <label for="input_string">Enter GitHub URL:</label>
+    <label for="input_string">Enter GitHub URL: https://github.com/</label>
     <input type="text" id="input_string" name="input_string">
     <button type="submit">Submit</button>
 </form>
